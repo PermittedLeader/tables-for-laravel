@@ -227,7 +227,15 @@ abstract class Table extends Component implements FromQuery, WithHeadings, WithM
                             $query->where(isset($this->scope['key']) ? $this->scope['key'] : 'id', $this->scope['value']);
                         });
                     } elseif ($this->scope['type'] == 'column') {
-                        $query->where($this->scope['column'], $this->scope['value']);
+                        if(isset($this->scope['operator'])&&$this->scope['operator']=='in')
+                        {
+                            $query->whereIn($this->scope['column'],$this->scope['value']);
+                        } else {
+                            $query->where($this->scope['column'], $this->scope['value'],operatior: isset($this->scope['operator']) ? $this->scope['operator'] : '=');
+                        }
+                        
+                    } elseif ($this->scope['type'] == 'query') {
+                        $query->where($this->scope['value']);
                     }
                 })
                 ->when($this->getColumns(), function ($query) {

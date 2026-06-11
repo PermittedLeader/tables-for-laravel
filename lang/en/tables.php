@@ -24,5 +24,8 @@ return [
             'items'=>'items'
         ]
         ],
+    'select'=>[
+        'select'=>'Select'
+    ],
     'more'=>'More...'
 ];

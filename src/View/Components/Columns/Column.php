@@ -250,7 +250,7 @@ class Column extends Component
      */
     public function renderColumn($data): View|Closure|string
     {
-        return view('tables::components.'.$this->component, ['column' => $this, 'value' => $data]);
+        return once(fn() => view('tables::components.'.$this->component, ['column' => $this, 'value' => $data]));
     }
 
     /**

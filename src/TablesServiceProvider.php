@@ -1,8 +1,10 @@
 <?php
 namespace Permittedleader\Tables;
 
+use Livewire\Livewire;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Permittedleader\Tables\Http\Livewire\SelectTable;
 
 class TablesServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class TablesServiceProvider extends ServiceProvider
         ],'tables-views');
         $this->loadViewsFrom(__DIR__.'/../resources/views','tables');
         Blade::componentNamespace('Permittedleader\\Tables\\View','tables');
+        Livewire::component('select-table', SelectTable::class);
 
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'tables');
     }
